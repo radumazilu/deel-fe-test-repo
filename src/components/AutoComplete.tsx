@@ -6,6 +6,7 @@ interface autoCompleteProps {
 
 const AutoComplete = ({ data }: autoCompleteProps) => {
   const [query, setQuery] = useState('')
+  const [selectedCuntry, setSelectedCountry] = useState(false)
   const [suggestedCountries, setSuggestedCountries] = useState([] as string[])
 
   const filterData = async (query: string) => {
@@ -16,42 +17,46 @@ const AutoComplete = ({ data }: autoCompleteProps) => {
     const query = e.target.value;
     let filteredSuggestions: string[] = [];
     if (query.length > 0) {
-      // const regex = new RegExp(`(${query})`, 'gi')
       filteredSuggestions = await filterData(query)
     }
     setQuery(query)
+    setSelectedCountry(false)
     setSuggestedCountries(filteredSuggestions)
   };
 
   const selectQuery = (value: string) => {
     setQuery(value) // show value in the input
+    setSelectedCountry(true)
     setSuggestedCountries([]) // hide suggestions
   };
 
   return (
     <div className='autocomplete-wrapper'>
       <input
-        autoComplete="off"
+        type="text"
+        placeholder='What country do you plan to work in?'
         value={query}
         onChange={onTextChanged}
-        placeholder='What country do you plan to work in?'
-        type="text"
       />
-      {suggestedCountries.length > 0 ? (
-        <ul className='autocomplete-list'>
-          {suggestedCountries.map((suggestion: string) => (
-            <li key={suggestion} onClick={() => { selectQuery(suggestion) }}>
-              {suggestion}
+      {!selectedCuntry ? (
+        suggestedCountries.length > 0 ? (
+          <ul className='autocomplete'>
+            {suggestedCountries.map((suggestion: string) => (
+              <li key={suggestion} onClick={() => { selectQuery(suggestion) }}>
+                {suggestion}
+              </li>
+            ))}
+          </ul>
+        ) : query.length > 0 ? (
+          <ul className='autocomplete'>
+            <li>
+              {'No results found'}
             </li>
-          ))}
-        </ul>
-      ) : query.length > 0 ? (
-        <ul className='autocomplete-list'>
-          <li>
-            {'No results found'}
-          </li>
-        </ul>
-      ) : null}
+          </ul>
+        ) : null
+      ) : (
+        null
+      )}
     </div>
   );
 };
