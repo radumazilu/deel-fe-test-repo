@@ -30,6 +30,27 @@ const AutoComplete = ({ data }: autoCompleteProps) => {
     setSuggestedCountries([]) // hide suggestions
   };
 
+  const highlightQuery = (text: string, highlight: string) => {
+    /** 
+     * we know the filtered suggestions all include the query,
+     * so we can split by that query and return some bold text 
+     * */
+    const parts = text.split(new RegExp(`(${highlight})`, 'gi'))
+
+    return (
+      <span>
+        {parts.map((part, i) =>
+          <span
+            key={i}
+            className={part.toLowerCase() === highlight.toLowerCase() ? 'highlighted' : ''}
+          >
+            {part}
+          </span>
+        )}
+      </span>
+    )
+  }
+
   return (
     <div className='autocomplete-wrapper'>
       <input
@@ -43,7 +64,7 @@ const AutoComplete = ({ data }: autoCompleteProps) => {
           <ul className='autocomplete'>
             {suggestedCountries.map((suggestion: string) => (
               <li key={suggestion} onClick={() => { selectQuery(suggestion) }}>
-                {suggestion}
+                {highlightQuery(suggestion, query)}
               </li>
             ))}
           </ul>
