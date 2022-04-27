@@ -90,7 +90,7 @@ const AutoComplete = ({ data }: autoCompleteProps) => {
         ) : query.length > 0 ? (
           <ul className='autocomplete'>
             <li>
-              {'No results found'}
+              {'No countries found'}
             </li>
           </ul>
         ) : null
