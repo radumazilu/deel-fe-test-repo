@@ -53,12 +53,14 @@ const AutoComplete = ({ data }: autoCompleteProps) => {
 
   return (
     <div className='autocomplete-wrapper'>
-      <input
-        type="text"
-        placeholder='What country do you plan to work in?'
-        value={query}
-        onChange={onTextChanged}
-      />
+      <div className="input-wrapper">
+        <input
+          type="text"
+          placeholder='What country do you plan to work in?'
+          value={query}
+          onChange={onTextChanged}
+        />
+      </div>
       {!selectedCuntry ? (
         suggestedCountries.length > 0 ? (
           <ul className='autocomplete'>
