@@ -23,6 +23,11 @@ const AutoComplete = ({ data }: autoCompleteProps) => {
     setSuggestedCountries(filteredSuggestions)
   };
 
+  const selectQuery = (value: string) => {
+    setQuery(value) // show value in the input
+    setSuggestedCountries([]) // hide suggestions
+  };
+
   return (
     <div className='autocomplete-wrapper'>
       <input
@@ -35,7 +40,7 @@ const AutoComplete = ({ data }: autoCompleteProps) => {
       {suggestedCountries.length > 0 ? (
         <ul className='autocomplete-list'>
           {suggestedCountries.map((suggestion: string) => (
-            <li key={suggestion}>
+            <li key={suggestion} onClick={() => { selectQuery(suggestion) }}>
               {suggestion}
             </li>
           ))}
