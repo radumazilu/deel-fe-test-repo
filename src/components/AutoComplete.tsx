@@ -36,7 +36,7 @@ function SuggestionsList(props: suggestionsListProps) {
   return (
     <ul className='autocomplete'>
       {props.suggestedCountries.map((suggestion: string) => (
-        <li key={suggestion} style={{ background: 'red' }} onClick={() => { props.selectQuery(suggestion) }}>
+        <li key={suggestion} onClick={() => { props.selectQuery(suggestion) }}>
           {highlightQuery(suggestion, props.query)}
         </li>
       ))}

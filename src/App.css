@@ -42,11 +42,97 @@
 }
 
 .wrapper {
-  min-height: 100vh;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   font-size: calc(10px + 2vmin);
   padding: 3rem;
+}
+
+.input-wrapper {
+  font-size: 14px;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  line-height: 1.4375em;
+  color: rgba(0, 0, 0, 0.87);
+  box-sizing: border-box;
+  cursor: text;
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  width: 320px;
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(209, 211, 213);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border 300ms ease 0s, border-radius 300ms ease 0s;
+}
+
+.input-wrapper:hover {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(124, 130, 134);
+}
+
+.input-wrapper > input {
+  font: inherit;
+  letter-spacing: inherit;
+  color: currentcolor;
+  border: 0px;
+  box-sizing: content-box;
+  background: none;
+  height: 1.4375em;
+  margin: 0px;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0px;
+  width: 100%;
+  animation-name: mui-auto-fill-cancel;
+  animation-duration: 10ms;
+  padding: 12px 12px 8px;
+  caret-color: rgb(44, 113, 240);
+  color: rgb(1, 9, 15);
+}
+
+input:active, input:visited, input:focus-visible {
+  outline: 0px;
+}
+
+.no-autocomplete {
+  color: #999;
+  padding: 8px;
+}
+
+.autocomplete {
+  border-top-width: 0;
+  list-style: none;
+  margin-top: 0;
+  max-height: 300px;
+  overflow-y: auto;
+  padding-left: 0;
+  /* width: calc(300px + 1rem); */
+  width: 320px;
+}
+
+.autocomplete li {
+  height: 1.4375em;
+  padding: 12px 12px 8px;
+  caret-color: rgb(44, 113, 240);
+  color: rgb(1, 9, 15);
+  /* width: 100%; */
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(209, 211, 213);
+  border-radius: 8px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.autocomplete > .active,
+.autocomplete li:hover {
+  background-color: rgb(209, 211, 213);
+  cursor: pointer;
+  /* font-weight: 700; */
 }
