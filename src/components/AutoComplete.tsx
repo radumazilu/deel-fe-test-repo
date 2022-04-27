@@ -8,7 +8,9 @@ const AutoComplete = ({ data }: autoCompleteProps) => {
   const [query, setQuery] = useState('')
   const [suggestedCountries, setSuggestedCountries] = useState([] as string[])
 
-  const filterData = async (query: string) => data // write filter function
+  const filterData = async (query: string) => {
+    return data.sort().filter((v: string) => v.toLowerCase().includes(query.toLowerCase()))
+  }
 
   const onTextChanged = async (e: ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
